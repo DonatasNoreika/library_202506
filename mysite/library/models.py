@@ -8,6 +8,11 @@ class Author(models.Model):
     first_name = models.CharField(verbose_name="Vardas", max_length=100)
     last_name = models.CharField(verbose_name="Pavardė", max_length=100)
 
+    def display_books(self):
+        return ", ".join(book.title for book in self.books.all())
+
+    display_books.short_description = "Knygos"
+
     class Meta:
         verbose_name = "Autorius"
         verbose_name_plural = "Autoriai"
@@ -21,7 +26,7 @@ class Book(models.Model):
     summary = models.TextField(verbose_name="Aprašymas", max_length=1000, help_text='Trumpas knygos aprašymas')
     isbn = models.CharField(verbose_name="ISBN", max_length=13,
                             help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
-    author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True)
+    author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True, related_name="books")
     genre = models.ManyToManyField(to="Genre", verbose_name="Žanras", help_text='Išrinkite žanrą(us) šiai knygai')
 
     # def display_genre(self):
