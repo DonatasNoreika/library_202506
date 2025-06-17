@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Mano svetainė</title>
-</head>
-<body>
-<h1>Šiuo metu turime:</h1>
+{% extends "base.html" %}
+
+{% block "title" %}HOME{% endblock %}
+{% block "content" %}
+<h1 class="display-5">Šiuo metu turime:</h1>
 <ul>
     <li><strong>Knygų: </strong>{{ num_books }}</li>
     <li><strong>Kopijų: </strong>{{ num_instances }}</li>
     <li><strong>Laisvų kopijų: </strong>{{ num_instances_available }}</li>
     <li><strong>Autorių: </strong>{{ num_authors }}</li>
 </ul>
-</body>
-</html>
+{% endblock %}
