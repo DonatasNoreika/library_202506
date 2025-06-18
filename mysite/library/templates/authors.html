@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block "title" %}Autoriai{% endblock %}
+{% block "content" %}
+<h1 class="display-5">Autoriai:</h1>
+{% for author in authors %}
+<p>{{ author }}</p>
+<hr>
+{% endfor %}
+{% endblock %}
