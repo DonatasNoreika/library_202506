@@ -4,7 +4,7 @@
 {% block "content" %}
 <h1 class="display-5">Knygos:</h1>
 {% for book in books %}
-<a href="">
+<a href="{{ book.pk }}">
     <p>{{ book.title }}</p>
     <hr>
 </a>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block "title" %}Knyga{% endblock %}
+{% block "content" %}
+<h1 class="display-5">Knyga "{{ book.title }}"</h1>
+<p><strong>Autorius: </strong>{{ book.author }}</p>
+<p><strong>ISBN: </strong>{{ book.isbn }}</p>
+<p><strong>Žanras: </strong>{{ book.display_genre }}</p>
+<p>{{ book.summary }}</p>
+{% if book.instances.all %}
+<h3>Knygos kopijos:</h3>
+{% for instance in book.instances.all %}
+<p>{{ instance.uuid }} ({{ instance.get_status_display }}) - {{ instance.due_back }}</p>
+{% endfor %}
+{% else %}
+<h3>Knygos kopijų nėra</h3>
+{% endif %}
+{% endblock %}
