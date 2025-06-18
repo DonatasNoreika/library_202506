@@ -10,7 +10,7 @@
 {% if book.instances.all %}
 <h3>Knygos kopijos:</h3>
 {% for instance in book.instances.all %}
-<p>{{ instance.uuid }} ({{ instance.get_status_display }}) - {{ instance.due_back }}</p>
+<p class="{% if instance.status == 'g' %}text-success{% elif instance.status == 'p' %}text-danger{% elif instance.status == 'r' %}text-warning{% endif %}">{{ instance.uuid }} ({{ instance.get_status_display }}) - {{ instance.due_back }}</p>
 {% endfor %}
 {% else %}
 <h3>Knygos kopijų nėra</h3>
