@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block "title" %}Autorius{% endblock %}
+{% block "content" %}
+<h1 class="display-5">Autorius {{ author.first_name }} {{ author.last_name }}</h1>
+<p>{{ author.description }}</p>
+<h3>Autoriaus knygos:</h3>
+{% for book in author.books.all %}
+<p>{{ book.title }}</p>
+{% endfor %}
+{% endblock %}
