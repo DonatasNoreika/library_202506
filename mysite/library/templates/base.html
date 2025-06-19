@@ -34,6 +34,9 @@
         <a class="nav-link" href="{% url 'books' %}">Knygos</a>
       </li>
     </ul>
+    <form class="d-flex" action="{% url 'search' %}" method="get">
+          <input name="query" class="form-control" type="text" placeholder="Paieška">
+    </form>
   </div>
 </nav>
 

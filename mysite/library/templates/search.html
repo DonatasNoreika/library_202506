@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block "title" %}Paieškos rezultatai{% endblock %}
+{% block "content" %}
+<h1>Autoriai, rasti pagal užklausą "{{ query }}":</h1>
+{% for author in authors %}
+<p><a href="{% url 'author' author.pk %}">{{ author }}</a></p>
+{% endfor %}
+
+<h1>Knygos, rastos pagal užklausą "{{ query }}":</h1>
+{% for book in books %}
+<p><a href="{% url 'book' book.pk %}">{{ book }}</a></p>
+{% endfor %}
+{% endblock %}
