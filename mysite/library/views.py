@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Book, BookInstance, Author
 from django.views import generic
 
+
 # Create your views here.
 
 def index(request):
@@ -33,10 +34,10 @@ class BookListView(generic.ListView):
     model = Book
     template_name = "books.html"
     context_object_name = "books"
+    paginate_by = 5
 
 
 class BookDetailView(generic.DetailView):
     model = Book
     template_name = "book.html"
     context_object_name = "book"
-
