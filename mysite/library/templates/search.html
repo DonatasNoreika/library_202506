@@ -2,13 +2,21 @@
 
 {% block "title" %}Paieškos rezultatai{% endblock %}
 {% block "content" %}
+{% if authors.exists %}
 <h1>Autoriai, rasti pagal užklausą "{{ query }}":</h1>
 {% for author in authors %}
 <p><a href="{% url 'author' author.pk %}">{{ author }}</a></p>
 {% endfor %}
+{% else %}
+<p>Pagal užklausą "{{ query }}" autorių nerasta!</p>
+{% endif %}
 
+{% if books.exists %}
 <h1>Knygos, rastos pagal užklausą "{{ query }}":</h1>
 {% for book in books %}
 <p><a href="{% url 'book' book.pk %}">{{ book }}</a></p>
 {% endfor %}
+{% else %}
+<p>Pagal užklausą "{{ query }}" knygų nerasta!</p>
+{% endif %}
 {% endblock %}
