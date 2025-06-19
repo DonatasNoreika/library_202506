@@ -13,7 +13,7 @@ class BookInstanceInLine(admin.TabularInline):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'isbn', 'display_genre']
+    list_display = ['title', 'author', 'isbn', 'display_genre', 'cover']
     inlines = [BookInstanceInLine]
 
 

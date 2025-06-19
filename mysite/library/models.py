@@ -27,6 +27,7 @@ class Book(models.Model):
     summary = models.TextField(verbose_name="Aprašymas", max_length=1000, help_text='Trumpas knygos aprašymas')
     isbn = models.CharField(verbose_name="ISBN", max_length=13,
                             help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
+    cover = models.ImageField(verbose_name="Viršelis", upload_to='covers', null=True, blank=True)
     author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True, related_name="books")
     genre = models.ManyToManyField(to="Genre", verbose_name="Žanras", help_text='Išrinkite žanrą(us) šiai knygai')
 
