@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.contrib.auth.models import User
 from datetime import date
+from tinymce.models import HTMLField
 
 
 # Create your models here.
@@ -9,7 +10,7 @@ class Author(models.Model):
     """Model representing an author."""
     first_name = models.CharField(verbose_name="Vardas", max_length=100)
     last_name = models.CharField(verbose_name="Pavardė", max_length=100)
-    description = models.TextField(verbose_name="Aprašymas", max_length=3000, default="")
+    description = HTMLField(verbose_name="Aprašymas", max_length=3000, default="")
 
     def display_books(self):
         return ", ".join(book.title for book in self.books.all())

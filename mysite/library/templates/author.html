@@ -3,7 +3,7 @@
 {% block "title" %}Autorius{% endblock %}
 {% block "content" %}
 <h1 class="display-5">Autorius {{ author.first_name }} {{ author.last_name }}</h1>
-<p>{{ author.description }}</p>
+<p>{{ author.description | safe }}</p>
 <h3>Autoriaus knygos:</h3>
 {% for book in author.books.all %}
 <p><a href="{% url 'book' book.pk %}">{{ book.title }}</a></p>
