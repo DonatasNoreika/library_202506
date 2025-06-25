@@ -3,6 +3,6 @@
 {% block "title" %}Mano knygos{% endblock %}
 {% block "content" %}
 {% for instance in instances %}
-<p>{{ instance }}</p>
+<p class="{% if instance.is_overdue %}text-danger{% endif %}">{{ instance.book }} ({{ instance.uuid }}) - {{ instance.due_back }}</p>
 {% endfor %}
 {% endblock %}

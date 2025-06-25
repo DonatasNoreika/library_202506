@@ -81,7 +81,7 @@ class BookInstance(models.Model):
     status = models.CharField(verbose_name="Būsena", max_length=1, choices=LOAN_STATUS, blank=True, default="a")
 
     def is_overdue(self):
-        return self.due_back and self.due_back > date.today()
+        return self.due_back and self.due_back < date.today()
 
 
     class Meta:
