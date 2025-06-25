@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from .models import Book, BookInstance, Author
 from django.views import generic
@@ -64,3 +65,13 @@ def search(request):
         "books": books,
     }
     return render(request, template_name="search.html", context=context)
+
+
+class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = "my_books.html"
+    context_object_name = "instances"
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user)
+
