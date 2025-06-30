@@ -19,13 +19,24 @@
 <h3>Knygos kopijų nėra</h3>
 {% endif %}
 
+{% if user.is_authenticated %}
+<div class="fieldWrapper">
+    <hr><br/>
+    <h1>Palikite atsiliepimą</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.content }}<br/>
+        <input type="submit" value="Paskelbti">
+    </form>
+</div>
+{% endif %}
 {% if book.reviews.all %}
-<h3>Komentarai:</h3>
+<h3>Atsiliepimai:</h3>
 {% for review in book.reviews.all %}
 <p><strong>{{ review.reviewer }}</strong>, <em>{{ review.date_created }}</em></p>
 <p>{{ review.content }}</p>
 {% endfor %}
 {% else %}
-<h3>Komentarų nėra</h3>
+<h3>Atsiliepimų nėra</h3>
 {% endif %}
 {% endblock %}
