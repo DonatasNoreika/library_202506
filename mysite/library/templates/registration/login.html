@@ -15,17 +15,9 @@
   {% endif %}
 
   <form method="post" action="{% url 'login' %}">
+    {% load crispy_forms_tags %}
     {% csrf_token %}
-    <table>
-      <tr>
-        <td>Vartotojas: </td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>Slaptažodis: </td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
+        {{ form | crispy }}
     <input type="submit" value="Prisijungti" />
     <input type="hidden" name="next" value="{{ next }}" />
   </form>

@@ -24,8 +24,9 @@
     <hr><br/>
     <h1>Palikite atsiliepimą</h1>
     <form action="" method="post">
+        {% load crispy_forms_tags %}
         {% csrf_token %}
-        {{ form.content }}<br/>
+        {{ form | crispy }}<br/>
         <input type="submit" value="Paskelbti">
     </form>
 </div>
