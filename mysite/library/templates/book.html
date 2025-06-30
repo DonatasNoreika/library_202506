@@ -34,7 +34,10 @@
 {% if book.reviews.all %}
 <h3>Atsiliepimai:</h3>
 {% for review in book.reviews.all %}
-<p><strong>{{ review.reviewer }}</strong>, <em>{{ review.date_created }}</em></p>
+
+<p><img class="rounded-circle account-img" style="width: 30px" src="{{ review.reviewer.profile.photo.url }}">
+        <strong>{{ review.reviewer }}</strong>, <em>{{ review.date_created }}</em>
+</p>
 <p>{{ review.content }}</p>
 {% endfor %}
 {% else %}
