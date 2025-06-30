@@ -2,6 +2,7 @@
 {% block "title" %}Vartotojo profilis{% endblock %}
 
 {% block "content" %}
+<img class="rounded-circle account-img" src="{{ user.profile.photo.url }}">
 <h2 class="account-heading">{{ user.username }}</h2>
 <p class="text-secondary">{{ user.email }}</p>
 <p class="text-secondary">Vardas: {{ user.first_name }}</p>
