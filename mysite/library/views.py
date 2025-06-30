@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import password_validation
 from .forms import BookReviewForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -131,3 +133,7 @@ def register(request):
 
     if request.method == "GET":
         return render(request, template_name="register.html")
+
+@login_required
+def profile(request):
+    return render(request, template_name="profile.html")

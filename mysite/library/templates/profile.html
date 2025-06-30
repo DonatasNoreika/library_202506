@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block "title" %}Vartotojo profilis{% endblock %}
+
+{% block "content" %}
+<h2 class="account-heading">{{ user.username }}</h2>
+<p class="text-secondary">{{ user.email }}</p>
+<p class="text-secondary">Vardas: {{ user.first_name }}</p>
+<p class="text-secondary">Pavardė: {{ user.last_name }}</p>
+{% endblock %}
