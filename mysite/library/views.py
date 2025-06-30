@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import password_validation
-from .forms import BookReviewForm
+from .forms import BookReviewForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -136,4 +136,21 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, template_name="profile.html")
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        new_email = request.POST['email']
+        if new_email and request.user.email != new_email and User.objects.filter(email=new_email).exists():
+            messages.error(request, f"Vartotojas el. paštu {new_email} jau užregistruotas!")
+            return redirect("profile")
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.info(request, "Profilis atnaujintas")
+            return redirect("profile")
+
+    context = {
+        'u_form': UserUpdateForm(instance=request.user),
+        'p_form': ProfileUpdateForm(instance=request.user.profile),
+    }
+    return render(request, template_name="profile.html", context=context)
