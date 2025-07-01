@@ -174,3 +174,10 @@ class BookInstanceCreateView(LoginRequiredMixin, generic.CreateView):
     fields = ['book', 'reader', 'due_back', 'status']
     success_url = "/library/instances/"
 
+
+class BookInstanceUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = BookInstance
+    template_name = "instance_form.html"
+    fields = ['book', 'reader', 'due_back', 'status']
+    success_url = "/library/instances/"
+
