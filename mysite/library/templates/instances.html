@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block "title" %}Knygų egzemplioriai{% endblock%}
 {% block "content" %}
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'instance_create' %}">Naujas egzempliorius</a>
 {% for instance in instances %}
 <a href="{% url 'instance' instance.pk %}">
     <p>{{ instance.book }} - {{ instance.uuid }}

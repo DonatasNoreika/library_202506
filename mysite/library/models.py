@@ -89,6 +89,7 @@ class BookInstance(models.Model):
     class Meta:
         verbose_name = "Kopija"
         verbose_name_plural = "Kopijos"
+        ordering = ["-id"]
 
     def __str__(self):
         return f"{self.book} ({self.uuid})"
