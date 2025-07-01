@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import password_validation
-from .forms import BookReviewForm, UserUpdateForm, ProfileUpdateForm
+from .forms import BookReviewForm, UserUpdateForm, ProfileUpdateForm, InstanceCreateUpdateForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -171,14 +171,16 @@ class BookInstanceDetailView(LoginRequiredMixin, generic.DetailView):
 class BookInstanceCreateView(LoginRequiredMixin, generic.CreateView):
     model = BookInstance
     template_name = "instance_form.html"
-    fields = ['book', 'reader', 'due_back', 'status']
+    form_class = InstanceCreateUpdateForm
+    # fields = ['book', 'reader', 'due_back', 'status']
     success_url = "/library/instances/"
 
 
 class BookInstanceUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = BookInstance
     template_name = "instance_form.html"
-    fields = ['book', 'reader', 'due_back', 'status']
+    form_class = InstanceCreateUpdateForm
+    # fields = ['book', 'reader', 'due_back', 'status']
     success_url = "/library/instances/"
 
 
