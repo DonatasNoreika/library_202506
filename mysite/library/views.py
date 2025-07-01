@@ -154,3 +154,10 @@ def profile(request):
         'p_form': ProfileUpdateForm(instance=request.user.profile),
     }
     return render(request, template_name="profile.html", context=context)
+
+
+class BookInstanceListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    context_object_name = 'instances'
+    template_name = 'instances.html'
+
