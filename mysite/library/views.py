@@ -181,3 +181,9 @@ class BookInstanceUpdateView(LoginRequiredMixin, generic.UpdateView):
     fields = ['book', 'reader', 'due_back', 'status']
     success_url = "/library/instances/"
 
+
+class BookInstanceDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = BookInstance
+    template_name = "instance_delete.html"
+    context_object_name = "instance"
+    success_url = "/library/instances/"
