@@ -161,3 +161,10 @@ class BookInstanceListView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'instances'
     template_name = 'instances.html'
 
+
+class BookInstanceDetailView(LoginRequiredMixin, generic.DetailView):
+    model = BookInstance
+    context_object_name = "instance"
+    template_name = "instance.html"
+
+
