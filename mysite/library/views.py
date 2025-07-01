@@ -186,6 +186,10 @@ class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.Cr
     def test_func(self):
         return self.request.user.profile.is_employee
 
+    def form_valid(self, form):
+        messages.success(self.request, "Egzempliorius sukurtas")
+        return super().form_valid(form)
+
 
 class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BookInstance
@@ -197,6 +201,10 @@ class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Up
     def test_func(self):
         return self.request.user.profile.is_employee
 
+    def form_valid(self, form):
+        messages.success(self.request, "Egzempliorius pakeistas")
+        return super().form_valid(form)
+
 
 class BookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = BookInstance
@@ -206,3 +214,7 @@ class BookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.De
 
     def test_func(self):
         return self.request.user.profile.is_employee
+
+    def form_valid(self, form):
+        messages.success(self.request, "Egzempliorius ištrintas")
+        return super().form_valid(form)
