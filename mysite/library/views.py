@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import FormMixin
 from django.shortcuts import render, redirect, reverse
 from .models import Book, BookInstance, Author
@@ -82,9 +82,10 @@ class BookDetailView(FormMixin, generic.DetailView):
 
 def search(request):
     query = request.GET.get('query')
-    authors = Author.objects.filter(Q(first_name__icontains=query) | Q(last_name__icontains=query) | Q(description__icontains=query))
+    authors = Author.objects.filter(
+        Q(first_name__icontains=query) | Q(last_name__icontains=query) | Q(description__icontains=query))
     books = Book.objects.filter(Q(title__icontains=query) | Q(summary__icontains=query) | Q(isbn__icontains=query) | Q(
-            author__first_name__icontains=query) | Q(author__last_name__icontains=query))
+        author__first_name__icontains=query) | Q(author__last_name__icontains=query))
     context = {
         "query": query,
         "authors": authors,
@@ -134,6 +135,7 @@ def register(request):
     if request.method == "GET":
         return render(request, template_name="register.html")
 
+
 @login_required
 def profile(request):
     if request.method == "POST":
@@ -156,36 +158,51 @@ def profile(request):
     return render(request, template_name="profile.html", context=context)
 
 
-class BookInstanceListView(LoginRequiredMixin, generic.ListView):
+class BookInstanceListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     model = BookInstance
     context_object_name = 'instances'
     template_name = 'instances.html'
 
+    def test_func(self):
+        return self.request.user.profile.is_employee
 
-class BookInstanceDetailView(LoginRequiredMixin, generic.DetailView):
+
+class BookInstanceDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
     model = BookInstance
     context_object_name = "instance"
     template_name = "instance.html"
 
+    def test_func(self):
+        return self.request.user.profile.is_employee
 
-class BookInstanceCreateView(LoginRequiredMixin, generic.CreateView):
+
+class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = BookInstance
     template_name = "instance_form.html"
     form_class = InstanceCreateUpdateForm
     # fields = ['book', 'reader', 'due_back', 'status']
     success_url = "/library/instances/"
 
+    def test_func(self):
+        return self.request.user.profile.is_employee
 
-class BookInstanceUpdateView(LoginRequiredMixin, generic.UpdateView):
+
+class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BookInstance
     template_name = "instance_form.html"
     form_class = InstanceCreateUpdateForm
     # fields = ['book', 'reader', 'due_back', 'status']
     success_url = "/library/instances/"
 
+    def test_func(self):
+        return self.request.user.profile.is_employee
 
-class BookInstanceDeleteView(LoginRequiredMixin, generic.DeleteView):
+
+class BookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = BookInstance
     template_name = "instance_delete.html"
     context_object_name = "instance"
     success_url = "/library/instances/"
+
+    def test_func(self):
+        return self.request.user.profile.is_employee
