@@ -10,7 +10,7 @@
             <h2>Ar tikrai norite ištrinti knygos egzempliorių {{ instance.uuid }} ("{{ instance.book.title }}")?</h2>
             <div class="form-group">
                 <button class="btn btn-outline-danger" type="submit">Taip, ištrinti</button>
-                <a class="btn btn-outline-secondary" href="{% url 'instances' %}">Atšaukti</a>
+                <a class="btn btn-outline-secondary" href="{% url 'instance' instance.pk %}">Atšaukti</a>
             </div>
         </fieldset>
     </form>

@@ -196,7 +196,10 @@ class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Up
     template_name = "instance_form.html"
     form_class = InstanceCreateUpdateForm
     # fields = ['book', 'reader', 'due_back', 'status']
-    success_url = "/library/instances/"
+    # success_url = "/library/instances/"
+
+    def get_success_url(self):
+        return reverse("instance", kwargs={"pk": self.object.pk})
 
     def test_func(self):
         return self.request.user.profile.is_employee
