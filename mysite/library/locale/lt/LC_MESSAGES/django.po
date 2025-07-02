@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-02 11:01+0300\n"
-"PO-Revision-Date: 2025-07-02 11:03+0300\n"
+"POT-Creation-Date: 2025-07-02 11:30+0300\n"
+"PO-Revision-Date: 2025-07-02 11:33+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -136,7 +136,7 @@ msgstr "Nuotrauka"
 msgid "Employee"
 msgstr "Darbuotojas"
 
-#: .\library\models.py:117
+#: .\library\models.py:117 .\library\models.py:122
 msgid "Profile"
 msgstr "Profilis"
 
@@ -203,6 +203,41 @@ msgstr "Autoriai: "
 #: .\library\templates\index.html:13
 msgid "Your visits: "
 msgstr "Apsilankymų skaičius: "
+
+#: .\library\views.py:113
+msgid "Passwords do not match!"
+msgstr "Slaptažodžiai nesutampa!"
+
+#: .\library\views.py:124
+#, python-format
+msgid "Username %s already exists!"
+msgstr "Vartotojo vardas %s užimtas!"
+
+#: .\library\views.py:128 .\library\views.py:146
+#, python-format
+msgid "Email %s already exists!"
+msgstr "El. pašto adresas %s užimtas!"
+
+#: .\library\views.py:132
+#, python-format
+msgid "User %s registered!"
+msgstr "Vartotojas %s registruotas!"
+
+#: .\library\views.py:151
+msgid "Profile updated"
+msgstr "Profilis atnaujintas"
+
+#: .\library\views.py:190
+msgid "Book Instance created"
+msgstr "Knygų egzempliorius sukurtas"
+
+#: .\library\views.py:208
+msgid "Book Instance updated"
+msgstr "Knygų egzempliorius pakeistas"
+
+#: .\library\views.py:222
+msgid "Book Instance deleted"
+msgstr "Knygų egzempliorius ištrintas"
 
 #: .\mysite\settings.py:130
 msgid "English"

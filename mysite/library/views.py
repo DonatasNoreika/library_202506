@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import password_validation
 from .forms import BookReviewForm, UserUpdateForm, ProfileUpdateForm, InstanceCreateUpdateForm
 from django.contrib.auth.decorators import login_required
-
+from django.utils.translation import gettext as _
 
 # Create your views here.
 
@@ -110,7 +110,7 @@ def register(request):
         password = request.POST['password']
         password2 = request.POST['password2']
         if not password == password2:
-            messages.error(request, "Staptažodžiai nesutampa")
+            messages.error(request, _("Passwords do not match!"))
             return redirect("register")
         else:
             try:
@@ -121,15 +121,15 @@ def register(request):
                 return redirect("register")
 
             if User.objects.filter(username=username).exists():
-                messages.error(request, f"Vartotojo vardas {username} užimtas!")
+                messages.error(request, _('Username %s already exists!') % username)
                 return redirect("register")
             else:
                 if User.objects.filter(email=email).exists():
-                    messages.error(request, f"Vartotojas el. paštu {email} užimtas!")
+                    messages.error(request, _('Email %s already exists!') % email)
                     return redirect("register")
 
         User.objects.create_user(username=username, email=email, password=password)
-        messages.info(request, f"Vartotojas {username} registruotas!")
+        messages.info(request, _('User %s registered!') % username)
         return redirect("login")
 
     if request.method == "GET":
@@ -143,12 +143,12 @@ def profile(request):
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         new_email = request.POST['email']
         if new_email and request.user.email != new_email and User.objects.filter(email=new_email).exists():
-            messages.error(request, f"Vartotojas el. paštu {new_email} jau užregistruotas!")
+            messages.error(request, _('Email %s already exists!') % new_email)
             return redirect("profile")
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.info(request, "Profilis atnaujintas")
+            messages.info(request, _("Profile updated"))
             return redirect("profile")
 
     context = {
@@ -187,7 +187,7 @@ class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.Cr
         return self.request.user.profile.is_employee
 
     def form_valid(self, form):
-        messages.success(self.request, "Egzempliorius sukurtas")
+        messages.success(self.request, _("Book Instance created"))
         return super().form_valid(form)
 
 
@@ -205,7 +205,7 @@ class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Up
         return self.request.user.profile.is_employee
 
     def form_valid(self, form):
-        messages.success(self.request, "Egzempliorius pakeistas")
+        messages.success(self.request, _("Book Instance updated"))
         return super().form_valid(form)
 
 
@@ -219,5 +219,5 @@ class BookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.De
         return self.request.user.profile.is_employee
 
     def form_valid(self, form):
-        messages.success(self.request, "Egzempliorius ištrintas")
+        messages.success(self.request, _("Book Instance deleted"))
         return super().form_valid(form)
