@@ -122,6 +122,10 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 # LANGUAGE_CODE = 'lt'
 
+LOCALE_PATHS = [
+    BASE_DIR / "library" / "locale",
+]
+
 LANGUAGES = (
     ('en-us', _('English')),
     ('lt', _('Lithuanian')),
