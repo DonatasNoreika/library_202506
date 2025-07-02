@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-02 09:50+0300\n"
-"PO-Revision-Date: 2025-07-02 09:57+0300\n"
+"POT-Creation-Date: 2025-07-02 10:18+0300\n"
+"PO-Revision-Date: 2025-07-02 10:22+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -19,6 +19,50 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && (n%100<11 || n%100>19) ? 0 : "
 "n%10>=2 && n%10<=9 && (n%100<11 || n%100>19) ? 1 : 2);\n"
 "X-Generator: Poedit 3.6\n"
+
+#: .\library\templates\base.html:21
+msgid "My Library"
+msgstr "Mano biblioteka"
+
+#: .\library\templates\base.html:23
+msgid "Django test page!"
+msgstr "Django demonstracinė svetainė!"
+
+#: .\library\templates\base.html:30 .\library\templates\index.html:3
+msgid "HOME"
+msgstr "PRADŽIA"
+
+#: .\library\templates\base.html:33
+msgid "Authors"
+msgstr "Autoriai"
+
+#: .\library\templates\base.html:36
+msgid "Books"
+msgstr "Knygos"
+
+#: .\library\templates\base.html:51
+msgid "My Books"
+msgstr "Mano knygos"
+
+#: .\library\templates\base.html:55
+msgid "Administration"
+msgstr "Adminstravimas"
+
+#: .\library\templates\base.html:61
+msgid "Logout"
+msgstr "Atsijungti"
+
+#: .\library\templates\base.html:67
+msgid "Registration"
+msgstr "Registracija"
+
+#: .\library\templates\base.html:71
+msgid "Login"
+msgstr "Prisijungti"
+
+#: .\library\templates\base.html:77
+msgid "Search"
+msgstr "Paieška"
 
 #: .\library\templates\index.html:6
 msgid "Today we have:"
